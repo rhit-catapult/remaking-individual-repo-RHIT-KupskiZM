@@ -13,7 +13,7 @@ pygame.display.set_caption("Hello World")
 # Now the screen is where all the magic is going to happen. Our screen will
 # have a width of 640 pixels and a height of 480 pixels. The (0,0) point will
 # be at the top left of our screen. 
-screen = pygame.display.set_mode((640, 480))
+screen = pygame.display.set_mode((640, 640))
 # TODO 05: Change the window size, make sure your circle code still works.
 
 # This is a loop that will run forever, simply because True is always true

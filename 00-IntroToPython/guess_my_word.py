@@ -1,2 +1,3 @@
 print("guess my word")
-# a
+secret_word = "hound"
+print(secret_word)
