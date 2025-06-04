@@ -1,21 +1,20 @@
-# The two lines below allow you to use PyGame and System functions.
-# Often programmers use code that other developers have written.
+
 import pygame
 import sys
 
-# Let's turn pygame ON
 pygame.init()
 
 # Let's create a caption for the game window
-pygame.display.set_caption("Hello World")
+pygame.display.set_caption("1984")
 # TODO 00: Change the window caption to say your name.
 
 # Now the screen is where all the magic is going to happen. Our screen will
 # have a width of 640 pixels and a height of 480 pixels. The (0,0) point will
 # be at the top left of our screen. 
-screen = pygame.display.set_mode((640, 640))
+screen = pygame.display.set_mode((1280, 720))
 # TODO 05: Change the window size, make sure your circle code still works.
-
+screenwidth = screen.get_width()
+screenheight = screen.get_height()
 # This is a loop that will run forever, simply because True is always true
 while True:
     # Here's another loop inside of the first loop. Notice the indentation,
@@ -36,19 +35,17 @@ while True:
 
         # Additional interactions with events
 
-    # TODO 01: Make the background white by uncommenting the line below
-    # screen.fill(pygame.Color("Gray"))
-
+    screen.fill(pygame.Color("Gray"))
     # Draw things on the screen
 
     # TODO 02: Try to draw a circle (any size, any color, anywhere)
-    # pygame.draw.circle(screen, color, pos, radius, width(optional)  )
+    pygame.draw.circle(screen, pygame.Color("Purple"), (screenwidth/2,screenheight/1.5), 300, 300  )
 
     # TODO 03: Try to draw a red circle in the middle of the screen with a radius 100
-    # pygame.draw.circle(screen, color, pos, radius, width(optional)  )
+    pygame.draw.circle(screen, pygame.Color("Red"), (screenwidth/2,screenheight/2), 100, 300 )
 
     # TODO 04: Try to draw a yellow circle with the center exactly in the lower left corner of the screen, radius 10
-    # pygame.draw.circle(screen, color, pos, radius, width(optional)  )
+    pygame.draw.circle(screen, pygame.Color("Yellow"), (0,screenheight), 10, 30  )
 
     # This will make sure that things appear on our screen, without this
     # update, everything we do will not be visible!
