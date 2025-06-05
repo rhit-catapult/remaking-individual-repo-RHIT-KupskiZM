@@ -1,8 +1,8 @@
 import pygame
 import sys
-
-
+import time
 def main():
+    debounce = 0
     # pre-define RGB colors for Pygame
     BLACK = pygame.Color("Black")
     WHITE = pygame.Color("White")
