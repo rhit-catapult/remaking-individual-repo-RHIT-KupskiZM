@@ -46,7 +46,6 @@ while True:
 
     # TODO 04: Try to draw a yellow circle with the center exactly in the lower left corner of the screen, radius 10
     pygame.draw.circle(screen, pygame.Color("Yellow"), (0,screenheight), 10, 30  )
-
     # This will make sure that things appear on our screen, without this
     # update, everything we do will not be visible!
     # notice how this statement is still inside of the first while loop, but
