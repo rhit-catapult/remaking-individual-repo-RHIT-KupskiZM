@@ -41,7 +41,7 @@ class Hero:
     def draw(self):
         """ Draws this sprite onto the screen. """
       #  self.screen.blit(self.without_umbrella_filename, (self.x, self.y))
-        if time.time() > self.last_hit_time + .05:
+        if time.time() > self.last_hit_time + .5:
             self.screen.blit(self.without_umbrella_filename, (self.x, self.y))
         else:
             self.screen.blit(self.with_umbrella_filename, (self.x, self.y))
@@ -66,12 +66,9 @@ class Cloud:
 
     def rain(self):
         """ Adds a Raindrop to the array of raindrops so that it looks like the Cloud is raining. """
-        a = random.randint(0,300)
-        self.raindrops.append(Raindrop(self.screen, self.x + a, self.y+100))
-        # TODO 28: Append a new Raindrop to this Cloud's list of raindrops,
-        #     where the new Raindrop starts at:
-        #       - x is a random integer between this Cloud's x and this Cloud's x + 300.
-        #       - y is this Cloud's y + 100.
+        a = random.randint(0,self.cloudimage.get_width())
+        new_drop = Raindrop(self.screen, self.x + a, self.y+ self.cloudimage.get_height()-5)
+        self.raindrops.append(new_drop)
 
 
 def main():
@@ -80,7 +77,7 @@ def main():
     screen = pygame.display.set_mode((1000, 600))
     pygame.display.set_caption("anvil drop")
     fps = pygame.time.Clock()
-    testdrop = Raindrop(screen, 250, 10)
+    # testdrop = Raindrop(screen, 10,10)
     mike = Hero(screen,200,400, with_umbrella_filename= "Mike_umbrella.png", without_umbrella_filename= "Mike.png")
     alyssa = Hero(screen, 700,400, with_umbrella_filename= "Alyssa_umbrella.png", without_umbrella_filename= "Alyssa.png")
     cloud = Cloud(screen, 300, 50, image_filename= "cloud.png")
@@ -91,7 +88,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            if event.type == pygame.MOUSEBUTTONDOWN: #and debounce == 0:
+            if event.type == pygame.MOUSEBUTTONDOWN: # and debounce == 0:
                 mouse_pos = pygame.mouse.get_pos()
                 cloud.x = mouse_pos[0]-150
                 cloud.y = mouse_pos[1]-50
@@ -101,31 +98,44 @@ def main():
         pressed_keys = pygame.key.get_pressed()
         if pressed_keys[pygame.K_LEFT]:
             cloud.x -= 10
-        # if pressed_keys[pygame.K_RIGHT]:
-        #     cloud.x += 10
+        if pressed_keys[pygame.K_RIGHT]:
+            cloud.x += 10
         if pressed_keys[pygame.K_UP]:
             cloud.y -= 10
         if pressed_keys[pygame.K_DOWN]:
             cloud.y += 10
-
+        if cloud.x < 0:
+            cloud.x = 0
+        elif cloud.x > 700:
+            cloud.x = 700
+        if cloud.y < 0:
+            cloud.y = 0
+        if cloud.y > 300:
+            cloud.y = 300
 
             # --- begin area of test_drop code that will be removed later
 
-        alyssa.draw()
-        mike.draw()
-        if mike.hit_by(testdrop):
-            mike.last_hit_time = time.time()
-        if alyssa.hit_by(testdrop):
-            alyssa.last_hit_time = time.time()
+        # if mike.hit_by(testdrop):
+        #     mike.last_hit_time = time.time()
+        # if alyssa.hit_by(testdrop):
+        #     alyssa.last_hit_time = time.time()
         cloud.draw()
         cloud.rain()
-        testdrop.draw()
-        testdrop.move()
-      #  if testdrop.off_screen() == True:
-
-
-
-            # TODO 29: Remove the temporary testdrop code from this function and refactor it as follows:
+        for raindrop in cloud.raindrops:
+            raindrop.draw()
+            raindrop.move()
+            if mike.hit_by(raindrop):
+                mike.last_hit_time = time.time()
+                cloud.raindrops.remove(raindrop)
+            if alyssa.hit_by(raindrop):
+                alyssa.last_hit_time = time.time()
+                cloud.raindrops.remove(raindrop)
+            if raindrop.off_screen():
+               cloud.raindrops.remove(raindrop)
+            if raindrop.y > 700:
+                raindrop.y = 1
+        alyssa.draw()
+        mike.draw()
             # TODO: Make the Cloud "rain", then:
             # TODO    For each Raindrop in the Cloud's list of raindrops:
                 #       - move the Raindrop.
