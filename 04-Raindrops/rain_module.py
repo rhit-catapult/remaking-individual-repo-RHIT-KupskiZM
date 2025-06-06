@@ -17,7 +17,6 @@ class Raindrop:
 
     def off_screen(self):
         """ Returns true if the Raindrop y value is not shown on the screen, otherwise false. """
-        # Note: this will be used for testing, but not used in the final version of the code for the sake of simplicity.
         return self.y > self.screen.get_height()
 
     def draw(self):

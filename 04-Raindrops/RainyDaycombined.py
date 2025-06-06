@@ -10,13 +10,13 @@ class Raindrop:
         self.screen = screen
         self.x = x
         self.y = y
-        self.speed = random.randint(1,2)
+        self.speed = random.randint(1,5)
 
     def move(self):
         """ Move the self.y value of the Raindrop down the screen (y increase) at the self.speed. """
         self.speed *= 1.04
-        if self.speed > 50:
-            self.speed = 50
+        # if self.speed > 50:
+        #     self.speed = 50
         self.y += self.speed
 
     def off_screen(self):

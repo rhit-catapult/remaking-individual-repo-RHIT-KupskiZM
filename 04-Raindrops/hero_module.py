@@ -3,15 +3,14 @@ import time
 class Hero:
     def __init__(self, screen, x, y, with_umbrella_filename, without_umbrella_filename):
         """ Creates a Hero sprite (Mike) that does not move. If hit by rain he'll put up his umbrella. """
-        self.screen = screen    #     - Store the screen.
+        self.screen = screen
         self.x = x
-        self.y = y  #     - Set the initial position of this Hero to x and y.
+        self.y = y
         self.with_umbrella_filename = pygame.image.load(with_umbrella_filename)
         self.without_umbrella_filename = pygame.image.load(without_umbrella_filename)
         self.last_hit_time = 0
     def draw(self):
         """ Draws this sprite onto the screen. """
-      #  self.screen.blit(self.without_umbrella_filename, (self.x, self.y))
         if time.time() > self.last_hit_time + .5:
             self.screen.blit(self.without_umbrella_filename, (self.x, self.y))
         else:

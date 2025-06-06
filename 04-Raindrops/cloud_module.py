@@ -1,6 +1,6 @@
 import pygame
 import random
-import rain_module
+from rain_module import Raindrop
 class Cloud:
     def __init__(self, screen, x, y, image_filename):
         """ Creates a Cloud sprite that will produce Raindrop objects.  The cloud will be moving around. """
@@ -17,7 +17,7 @@ class Cloud:
     def rain(self):
         """ Adds a Raindrop to the array of raindrops so that it looks like the Cloud is raining. """
         a = random.randint(0,self.cloudimage.get_width())
-        new_drop = rain_module.Raindrop(self.screen, self.x + a, self.y+ self.cloudimage.get_height()-5)
+        new_drop = Raindrop(self.screen, self.x + a, self.y+ self.cloudimage.get_height()-5)
         self.raindrops.append(new_drop)
 
 if __name__ == "__main__":

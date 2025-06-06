@@ -8,7 +8,7 @@ import cloud_module
 def main():
     pygame.init()
     screen = pygame.display.set_mode((1000, 600))
-    pygame.display.set_caption("anvil drop")
+    pygame.display.set_caption("anvil drop modules")
     fps = pygame.time.Clock()
     mike = hero_module.Hero(screen,200,400, with_umbrella_filename= "Mike_umbrella.png", without_umbrella_filename= "Mike.png")
     alyssa = hero_module.Hero(screen, 700,400, with_umbrella_filename= "Alyssa_umbrella.png", without_umbrella_filename= "Alyssa.png")
